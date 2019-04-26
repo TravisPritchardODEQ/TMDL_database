@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+test_database.db
+cont_data.xlsx
+cont_data.csv
