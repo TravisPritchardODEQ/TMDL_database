@@ -22,7 +22,38 @@ The following method is for creating a new database using sqlitebrowser. You can
 
 The function Create_database() in "Create_database.R" (Note - this might be made into a package in the future) will populate an empty database with an initial table and view structure to house discrete (including continuous data summary statistics) and continuous WQ data. More tables may be needed, depending on project needs.  
 
-Create_database() uses the filename and pathway as an argument and populates the database with the following:
+**Create_database()** uses the filename and pathway as an argument and populates the database with the following:
 
--Tables  
-    -AWQMS_data
+ 1. **Stations**
+     - Information about monitoring locations. This is intended to be pulled from the Stations database, but the user can add additional records
+ 2. **Characteristics**
+     - A list of characteristics (parameters). The primary use of this table is to provide the valid values for the Char_Name field in AWQMS_data, Other_Data, and continuous_data tables.  This table is initially populated with the list of characteristics compatable with AWQMS as of 2009/04/25, but the user can add additional entries.  
+ 3. **AWQMS_data**
+     - This table holds data exported from AWQMS using the AWQMS_data() function from the AWQMS_data package. Note that not all columns from the table exported from AWQMS_data() are brought into this table (information about stations is removed to save on storage space)
+ 4. **Other_data**
+    - This table is functionally similar to the AWQMS_data table, but is designed to hold WQ data from sources outside of AWQMS_data
+ 5. **continuous_data**
+     - This table hold raw continuous data. 
+     
+The schemas for these tables can be found in **Table_structures.xlsx**.
+
+In addition to these tables, Create_database() also creates 2 data views:
+
+ 1. **vw_Data_all**
+     - This view is a union with AWQMS_data and Other_data joined with the Stations table. This is intended to be the primary view to query against for analysis. 
+ 2. **vw_cont_data**
+     - This view joins the continuous_data table with the Stations table. 
+     
+### Populate database with data
+
+#### Functions
+
+**insert_stations_db()**  
+The function insert_stations_db() will take a vector of MLocIDs and query data from the Stations database. This query is then loaded in the Stations table in the specified SQLite database. Note - trying to load in duplcate values will cause an error.
+
+**import_AWQMS_data()** 
+The function import_AWQMS_data() will take a dataframe returned by AWQMS_data() in the AWQMS_data package and insert it into the AWQMS_data table. Note - trying to load in duplicate records will cause an error.  
+
+#### Templates
+
+Some templates to help with loading into the database can be found in the templates folder. Code to insert the results into the database still needs to be written, but will likely look a lot like import_AWQMS_data().

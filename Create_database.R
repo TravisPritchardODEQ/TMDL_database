@@ -336,7 +336,8 @@ cont_table_create <- 'CREATE TABLE "continuous_data" (
   "EquipmentID"	TEXT,
   "Project1"	TEXT,
   "Project2"	TEXT,
-  "Project3"	TEXT
+  "Project3"	TEXT,
+   FOREIGN KEY(Char_Name) REFERENCES Characteristics(Char_Name)
 )'
 
 DBI::dbExecute(con, cont_table_create)
@@ -344,7 +345,7 @@ DBI::dbExecute(con, cont_table_create)
 
 
 create_stations_index <- 'CREATE UNIQUE INDEX "Indx_cont_data" ON "continuous_data" (
-  "OrgID",
+  "OrganizationID",
   "MLocID",
   "SampleStartDate",
   "SampleStartTime",
