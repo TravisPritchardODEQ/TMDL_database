@@ -1,5 +1,14 @@
 # TMDL_database
 
+To use the import functions, you need ODBC connections to AWQMS and to Stations. 
+
+The database functions uses the following packages:
+
+- DBI
+- glue
+- RSQLite
+- odbc
+
 ## Creating new TMDL WQ database
 
 ### Download and install SQLite3
