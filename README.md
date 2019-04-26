@@ -23,7 +23,7 @@ The following method is for creating a new database using sqlitebrowser. You can
 
 1. Open sqlitebrowser
 2. Select New Database
-3. Naviagte to folder location, name and save new database 
+3. Navigate to folder location, name and save new database 
 4. Press cancel on "Edit table definition" window that pops us.
 
 
@@ -31,12 +31,12 @@ The following method is for creating a new database using sqlitebrowser. You can
 
 The function Create_database() in "Create_database.R" (Note - this might be made into a package in the future) will populate an empty database with an initial table and view structure to house discrete (including continuous data summary statistics) and continuous WQ data. More tables may be needed, depending on project needs.  
 
-**Create_database()** uses the filename and pathway as an argument and populates the database with the following:
+**Create_database()** uses the file name and pathway as an argument and populates the database with the following:
 
  1. **Stations**
      - Information about monitoring locations. This is intended to be pulled from the Stations database, but the user can add additional records
  2. **Characteristics**
-     - A list of characteristics (parameters). The primary use of this table is to provide the valid values for the Char_Name field in AWQMS_data, Other_Data, and continuous_data tables.  This table is initially populated with the list of characteristics compatable with AWQMS as of 2009/04/25, but the user can add additional entries.  
+     - A list of characteristics (parameters). The primary use of this table is to provide the valid values for the Char_Name field in AWQMS_data, Other_Data, and continuous_data tables.  This table is initially populated with the list of characteristics compatible with AWQMS as of 2009/04/25, but the user can add additional entries.  
  3. **AWQMS_data**
      - This table holds data exported from AWQMS using the AWQMS_data() function from the AWQMS_data package. Note that not all columns from the table exported from AWQMS_data() are brought into this table (information about stations is removed to save on storage space)
  4. **Other_data**
@@ -58,7 +58,7 @@ In addition to these tables, Create_database() also creates 2 data views:
 #### Functions
 
 **insert_stations_db()**  
-The function insert_stations_db() will take a vector of MLocIDs and query data from the Stations database. This query is then loaded in the Stations table in the specified SQLite database. Note - trying to load in duplcate values will cause an error.
+The function insert_stations_db() will take a vector of MLocIDs and query data from the Stations database. This query is then loaded in the Stations table in the specified SQLite database. Note - trying to load in duplicate values will cause an error.
 
 **import_AWQMS_data()** 
 The function import_AWQMS_data() will take a dataframe returned by AWQMS_data() in the AWQMS_data package and insert it into the AWQMS_data table. Note - trying to load in duplicate records will cause an error.  
