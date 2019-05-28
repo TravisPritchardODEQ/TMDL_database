@@ -13,11 +13,26 @@ The database functions uses the following packages:
 
 ### Download and install SQLite3
 
-If SQLite3 is not yet installed on your system, follow directions on this page: http://www.sqlitetutorial.net/download-install-sqlite/
+If SQLite3 is not yet installed on your system, follow these directions:
 
-Download and install sqlitebrowser (https://sqlitebrowser.org/) or some other GUI for sqlite. 
+1. Navigate to the SQLite Downloads page: https://www.sqlite.org/download.html/. 
+2. Download the pre-compiled binaries. For example on 64 bit windows it will be something like "sqlite-dll-win64-x64-3280000.zip" and contain files named "sqlite3.dll" and "sqlite3.def".
+3. Download the bundle of command-line tools for managing SQLite database files. For example on windows it will be something like "sqlite-tools-win32-x86-3280000.zip". This should inlcude the command-line shell program "sqlite3.exe". 
+4. Unzip and save all the files in a folder directory named "sqlite3". On windows the folder will be located at C:\sqlite3.
+5. For windows, add C:\sqlite3 to your PATH variable.
 
-### Create new database 
+Optional:
+6. Download and install sqlitebrowser (https://sqlitebrowser.org/) or some other GUI for sqlite. 
+
+
+### Create a new database
+
+Open command line and execute the following:
+
+```> sqlite3 test.db ".databases"```
+
+
+### Create a new database with sqlitebrowser
 
 The following method is for creating a new database using sqlitebrowser. You can use an alternate method, including using the command line to create a new database.  
 
@@ -27,7 +42,7 @@ The following method is for creating a new database using sqlitebrowser. You can
 4. Press cancel on "Edit table definition" window that pops us.
 
 
-#### Populate new database with database infrastructure. 
+### Populate new database with database infrastructure. 
 
 The function Create_database() in "Create_database.R" (Note - this might be made into a package in the future) will populate an empty database with an initial table and view structure to house discrete (including continuous data summary statistics) and continuous WQ data. More tables may be needed, depending on project needs.  
 
