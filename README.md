@@ -1,15 +1,17 @@
-# TMDL_database
+# wq_sqlite
 
-To use the import functions, you need ODBC connections to AWQMS and to Stations. 
+wq_sqlite is an R package to import water quality data and stations information into a SQLite database.
 
-The database functions uses the following R packages:
+To use the the wq_sqlite import functions, you need ODBC connections to DEQ's AWQMS and Stations databases. 
+
+The database functions use the following R packages:
 
 - DBI
 - glue
 - RSQLite
 - odbc
 
-## Creating new TMDL WQ database
+## Creating a new water quality database
 
 ### Download and install SQLite3
 
