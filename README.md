@@ -2,7 +2,7 @@
 
 To use the import functions, you need ODBC connections to AWQMS and to Stations. 
 
-The database functions uses the following packages:
+The database functions uses the following R packages:
 
 - DBI
 - glue
