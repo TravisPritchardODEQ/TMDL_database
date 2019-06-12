@@ -1,6 +1,6 @@
 # wq_sqlite
 
-wq_sqlite is an R package to import water quality data and stations information into a SQLite database.
+wq_sqlite are a series of R functions to import water quality data and stations information into a SQLite database.
 
 To use the the wq_sqlite import functions, you need ODBC connections to DEQ's AWQMS and Stations databases. 
 
