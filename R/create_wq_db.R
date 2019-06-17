@@ -1,12 +1,12 @@
 
 
-Create_database <- function(sqlite_database){
+create_wq_db <- function(sqlite_db){
+  
+  library(RSQLite)
+  library(DBI)
+  library(glue)
 
-
-con <- DBI::dbConnect(RSQLite::SQLite(), sqlite_database)
-
-
-
+con <- DBI::dbConnect(RSQLite::SQLite(), sqlite_db)
 
 # Create lookup tables ----------------------------------------------------
 
@@ -113,17 +113,12 @@ DBI::dbExecute(con, query)
 
 # Create unique index to ensure we only have unique OrgID, MLocID combinations
 
-
-
-
 create_stations_index <- 'CREATE UNIQUE INDEX "Indx_unique_stations" ON "Stations" (
   "OrgID",
   "MLocID")'
 
 query <- glue::glue_sql(create_stations_index,.con = con)
 DBI::dbExecute(con, query)
-
-
 
 # Create datatables --------------------------------------------------
 
@@ -204,11 +199,8 @@ FOREIGN KEY(OrganizationID, MLocID) REFERENCES Stations(OrgID,MLocID ),
 FOREIGN KEY(Char_Name) REFERENCES Characteristics(Char_Name)
 )"
 
-
 query <- glue::glue_sql(AWQMS_data_create_query,.con = con)
 DBI::dbExecute(con, query)
-
-
 
 create_AWQMS_data_index <- 'CREATE INDEX "Indx_AWQMS_data" ON "AWQMS_data" (
   "OrgID",
@@ -221,8 +213,6 @@ create_AWQMS_data_index <- 'CREATE INDEX "Indx_AWQMS_data" ON "AWQMS_data" (
 
 query <- glue::glue_sql(create_AWQMS_data_index,.con = con)
 DBI::dbExecute(con, query)
-
-
 
 # Other data table --------------------------------------------------------
 print("Creating Other_data Table")
@@ -365,7 +355,7 @@ DBI::dbExecute(con, create_stations_index)
 
 print("Create data view")
 
-create_data_view <- "CREATE VIEW vw_Data_all
+create_data_view <- "CREATE VIEW vw_data_all
 AS
 SELECT 
 a.OrganizationID,
