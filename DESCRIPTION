@@ -10,13 +10,13 @@ Authors@R: c(
            family = "Pritchard",
            role = c("aut"),
            email = "pritchard.travis@deq.state.or.us"))
-Description: wq_dblite is a package to import water quality data and stations information into a SQLite database. Tables in the SQLite database are formatted similiar to Oregon DEQ's AWQMS and Stations database. The purpose of this package is assist in archiving data retrieved from AWQMS (or other sources) in a lightweight SQLite database.
+Description: wqdblite is a package to import water quality data and stations information into a SQLite database. Tables in the SQLite database are formatted similiar to Oregon DEQ's AWQMS and Stations databases. The purpose of this package is assist in archiving data retrieved from AWQMS (or other sources) in a lightweight SQLite database.
 Imports:
     DBI,
     glue,
     odbc,
     RSQLite
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
