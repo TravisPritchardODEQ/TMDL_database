@@ -13,38 +13,6 @@ The database functions use the following R packages:
 
 ## Creating a new water quality database
 
-### OPTIONAL - Download and install SQLite3
-
-The required R package dependences have everything you need if working from within R. However, if you want to create, read, or write the SQLite database outside of R using command line or other tools, follow the instructions below.
-
-If SQLite3 is not yet installed on your system, follow these directions:
-
-1. Navigate to the SQLite Downloads page: https://www.sqlite.org/download.html/. 
-2. Download the pre-compiled binaries. For example on 64 bit windows it will be something like "sqlite-dll-win64-x64-3280000.zip" and contain files named "sqlite3.dll" and "sqlite3.def".
-3. Download the bundle of command-line tools for managing SQLite database files. For example on windows it will be something like "sqlite-tools-win32-x86-3280000.zip". This should inlcude the command-line shell program "sqlite3.exe". 
-4. Unzip and save all the files in a folder directory named "sqlite3". On windows the folder will be located at C:\sqlite3.
-5. For windows, add C:\sqlite3 to your PATH variable.
-
-Optional:
-6. Download and install sqlitebrowser (https://sqlitebrowser.org/) or some other GUI for sqlite. 
-
-
-### Create a new database
-
-Open command line and execute the following:
-
-```> sqlite3 test.db ".databases"```
-
-
-### Create a new database with sqlitebrowser
-
-The following method is for creating a new database using sqlitebrowser. You can use an alternate method, including using the command line to create a new database.  
-
-1. Open sqlitebrowser
-2. Select New Database
-3. Navigate to folder location, name and save new database 
-4. Press cancel on "Edit table definition" window that pops us.
-
 
 ### Populate new database with database infrastructure. 
 
@@ -85,3 +53,37 @@ The function import_AWQMS_data() will take a dataframe returned by AWQMS_data() 
 #### Templates
 
 Some templates to help with loading into the database can be found in the templates folder. Code to insert the results into the database still needs to be written, but will likely look a lot like import_AWQMS_data().
+
+
+### OPTIONAL - Download and install SQLite3
+
+The required R package dependences have everything you need if working from within R. However, if you want to create, read, or write the SQLite database outside of R using command line or other tools, follow the instructions below.
+
+If SQLite3 is not yet installed on your system, follow these directions:
+
+1. Navigate to the SQLite Downloads page: https://www.sqlite.org/download.html/. 
+2. Download the pre-compiled binaries. For example on 64 bit windows it will be something like "sqlite-dll-win64-x64-3280000.zip" and contain files named "sqlite3.dll" and "sqlite3.def".
+3. Download the bundle of command-line tools for managing SQLite database files. For example on windows it will be something like "sqlite-tools-win32-x86-3280000.zip". This should inlcude the command-line shell program "sqlite3.exe". 
+4. Unzip and save all the files in a folder directory named "sqlite3". On windows the folder will be located at C:\sqlite3.
+5. For windows, add C:\sqlite3 to your PATH variable.
+
+Optional:
+6. Download and install sqlitebrowser (https://sqlitebrowser.org/) or some other GUI for sqlite.
+
+### Create a new database
+
+Open command line and execute the following:
+
+```> sqlite3 test.db ".databases"```
+
+
+### Create a new database with sqlitebrowser
+
+The following method is for creating a new database using sqlitebrowser. You can use an alternate method, including using the command line to create a new database.  
+
+1. Open sqlitebrowser
+2. Select New Database
+3. Navigate to folder location, name and save new database 
+4. Press cancel on "Edit table definition" window that pops us.
+
+
