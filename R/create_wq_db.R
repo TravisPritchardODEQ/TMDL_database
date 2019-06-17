@@ -1,12 +1,11 @@
+#' Create and format a water quality SQLite database.
+#'
 #' Create a SQLite database with table fields identical to Oregon DEQ's AWQMS and Stations database.
 #'
 #' @param sqlite_db The path and file name to the new SQLite database to be created.
 #' @keywords database, sqlite
 #' @export
-#' @examples
-#' library(wqdblite)
-#'
-#' create_wq_db("test.db")
+#' @return None
 #'
 create_wq_db <- function(sqlite_db){
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/import_AWQMS_data.R
 \name{import_AWQMS_data}
 \alias{import_AWQMS_data}
-\title{Imports a dataframe returned by AWQMSdata::AWQMS_data() and inserts it into an existing SQLite database created using the create_wq_db() function. Data is inserted in the 'AWQMS_data' table. Note, trying to load in duplicate records will cause an error.}
+\title{Import AWQMS data into a SQLite database}
 \usage{
 import_AWQMS_data(AWQMS_df, sqlite_db)
 }
@@ -11,22 +11,29 @@ import_AWQMS_data(AWQMS_df, sqlite_db)
 
 \item{sqlite_db}{The path and file name to the SQLite database where the AWQMS_df will be imported into.}
 }
+\value{
+None
+}
 \description{
 Imports a dataframe returned by AWQMSdata::AWQMS_data() and inserts it into an existing SQLite database created using the create_wq_db() function. Data is inserted in the 'AWQMS_data' table. Note, trying to load in duplicate records will cause an error.
 }
 \examples{
 library(AWQMSdata)
 
-Retreive AWQMS data
-df.awqms <- AWQMS_Data(startdate = "1995-01-01", enddate = "2019-12-31",
-                      char = "Temperature, water",
-                      HUC10 = "1801020604",
-                      crit_codes = TRUE,
-                      filterQC = TRUE)
+# Retreive AWQMS data
+df.awqms <- AWQMS_Data(startdate = "1995-01-01",
+                       enddate = "2019-12-31",
+                       char = "Temperature, water",
+                       HUC10 = "1801020604",
+                       crit_codes = TRUE,
+                       filterQC = TRUE)
 
 create_wq_db("Jenny_Creek.db")
 
-import_AWQMS_data(AWQMS_df=df.awqms, sqlite_db="Jenny_Creek.db")
-import_stations_db(mlocs=unique(df.awqms$MLocID), sqlite_db="Jenny_Creek.db", stations_db = "STATIONS")
+import_AWQMS_data(AWQMS_df=df.awqms,
+                 sqlite_db="Jenny_Creek.db")
+import_stations_db(mlocs=unique(df.awqms$MLocID),
+                  sqlite_db="Jenny_Creek.db",
+                  stations_db = "STATIONS")
 }
 \keyword{AWQMS}

@@ -2,21 +2,18 @@
 % Please edit documentation in R/create_wq_db.R
 \name{create_wq_db}
 \alias{create_wq_db}
-\title{Create a SQLite database with table fields identical to Oregon DEQ's AWQMS and Stations database.}
+\title{Create and format a water quality SQLite database.}
 \usage{
 create_wq_db(sqlite_db)
 }
 \arguments{
 \item{sqlite_db}{The path and file name to the new SQLite database to be created.}
 }
+\value{
+None
+}
 \description{
 Create a SQLite database with table fields identical to Oregon DEQ's AWQMS and Stations database.
-}
-\examples{
-library(wqdblite)
-
-create_wq_db("test.db")
-
 }
 \keyword{database,}
 \keyword{sqlite}
