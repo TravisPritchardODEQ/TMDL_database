@@ -1,8 +1,13 @@
 
-import_AWQMS_data <- function(AWQMS_df, sqlite_database){
+import_AWQMS_data <- function(AWQMS_df, sqlite_db){
+  
+  
+  library(RSQLite)
+  library(DBI)
+  library(dplyr)
 
 import_data <- AWQMS_df %>%
-  select(
+  dplyr::select(
     'OrganizationID'
     ,'Org_Name'
     ,'Project1'
@@ -73,10 +78,7 @@ import_data <- AWQMS_df %>%
     ,'WQX_submit_date'
   )
 
-
-
-
-con <- DBI::dbConnect(RSQLite::SQLite(), sqlite_database)
+con <- DBI::dbConnect(RSQLite::SQLite(), sqlite_db)
 DBI::dbWriteTable(con, 'AWQMS_data', value= import_data, append = TRUE)
 DBI::dbDisconnect(con)
 
