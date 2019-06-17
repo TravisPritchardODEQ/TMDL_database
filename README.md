@@ -1,8 +1,8 @@
-# wq_sqlite
+# wq_dblite
 
-wq_sqlite are a series of R functions to import water quality data and stations information into a SQLite database.
+wq_dblite are a series of R functions to import water quality data and stations information into a SQLite database.
 
-To use the the wq_sqlite import functions, you need ODBC connections to DEQ's AWQMS and Stations databases. 
+To use the the wq_dblite import functions, you need ODBC connections to DEQ's AWQMS and Stations databases. 
 
 The database functions use the following R packages:
 
@@ -13,7 +13,9 @@ The database functions use the following R packages:
 
 ## Creating a new water quality database
 
-### Download and install SQLite3
+### OPTIONAL - Download and install SQLite3
+
+The required R package dependences have everything you need if working from within R. However, if you want to create, read, or write the SQLite database outside of R using command line or other tools, follow the instructions below.
 
 If SQLite3 is not yet installed on your system, follow these directions:
 
@@ -48,7 +50,7 @@ The following method is for creating a new database using sqlitebrowser. You can
 
 The function Create_database() in "Create_database.R" (Note - this might be made into a package in the future) will populate an empty database with an initial table and view structure to house discrete (including continuous data summary statistics) and continuous WQ data. More tables may be needed, depending on project needs.  
 
-**Create_database()** uses the file name and pathway as an argument and populates the database with the following:
+**create_wq_db(sqlite_db)** sqlite_db uses the file name and pathway as an argument and populates the database with the following:
 
  1. **Stations**
      - Information about monitoring locations. This is intended to be pulled from the Stations database, but the user can add additional records
@@ -74,7 +76,7 @@ In addition to these tables, Create_database() also creates 2 data views:
 
 #### Functions
 
-**insert_stations_db()**  
+**inmport_stations_db()**  
 The function insert_stations_db() will take a vector of MLocIDs and query data from the Stations database. This query is then loaded in the Stations table in the specified SQLite database. Note - trying to load in duplicate values will cause an error.
 
 **import_AWQMS_data()** 
