@@ -28,12 +28,7 @@ char_create <- "CREATE TABLE `Characteristics` (
 query <- glue::glue_sql(char_create,.con = con)
 DBI::dbExecute(con, query)
 
-load("data/lookup_tables.RData")
-
-
-DBI::dbWriteTable(con, 'Characteristics', value= AWQMS_chars, overwrite = TRUE)
-
-
+DBI::dbWriteTable(con, 'Characteristics', value= wqdblite::AWQMS_chars, overwrite = TRUE)
 
 # Stations ----------------------------------------------------------------
 
