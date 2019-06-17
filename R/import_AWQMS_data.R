@@ -1,7 +1,28 @@
+#' Imports a dataframe returned by AWQMSdata::AWQMS_data() and inserts it into an existing SQLite database created using the create_wq_db() function. Data is inserted in the 'AWQMS_data' table. Note, trying to load in duplicate records will cause an error.
+#'
+#' @param AWQMS_df  A dataframe to be imported into the SQLite database. This data frame is often returned by AWQMSdata::AWQMS_data().
+#' @param sqlite_db The path and file name to the SQLite database where the AWQMS_df will be imported into.
+#' @keywords AWQMS
+#' @export
+#' @examples
+#' library(AWQMSdata)
+#'
+#' Retreive AWQMS data
+#' df.awqms <- AWQMS_Data(startdate = "1995-01-01", enddate = "2019-12-31",
+#'                       char = "Temperature, water",
+#'                       HUC10 = "1801020604",
+#'                       crit_codes = TRUE,
+#'                       filterQC = TRUE)
+#'
+#'create_wq_db("Jenny_Creek.db")
+#'
+#'import_AWQMS_data(AWQMS_df=df.awqms, sqlite_db="Jenny_Creek.db")
+#'import_stations_db(mlocs=unique(df.awqms$MLocID), sqlite_db="Jenny_Creek.db", stations_db = "STATIONS")
+
 
 import_AWQMS_data <- function(AWQMS_df, sqlite_db){
-  
-  
+
+
   library(RSQLite)
   library(DBI)
   library(dplyr)

@@ -1,7 +1,15 @@
-
-
+#' Create a SQLite database with table fields identical to Oregon DEQ's AWQMS and Stations database.
+#'
+#' @param sqlite_db The path and file name to the new SQLite database to be created.
+#' @keywords database, sqlite
+#' @export
+#' @examples
+#' library(wqdblite)
+#'
+#' create_wq_db("test.db")
+#'
 create_wq_db <- function(sqlite_db){
-  
+
   library(RSQLite)
   library(DBI)
   library(glue)
@@ -357,7 +365,7 @@ print("Create data view")
 
 create_data_view <- "CREATE VIEW vw_data_all
 AS
-SELECT 
+SELECT
 a.OrganizationID,
 a.Org_Name,
 a.Project1,
@@ -450,10 +458,10 @@ b.ben_use_code,
 b.OWRD_Basin,
 b.pH_code
 FROM AWQMS_data a
-LEFT OUTER JOIN 
+LEFT OUTER JOIN
 Stations b ON a.OrganizationID = b.OrgID AND a.MLocID = b.MLocID
 UNION
-SELECT 
+SELECT
 a.OrganizationID,
 a.Org_Name,
 a.Project1,
@@ -546,7 +554,7 @@ b.ben_use_code,
 b.OWRD_Basin,
 b.pH_code
 FROM Other_data a
-LEFT OUTER JOIN 
+LEFT OUTER JOIN
 Stations b ON a.OrganizationID = b.OrgID AND a.MLocID = b.MLocID"
 
 DBI::dbExecute(con, create_data_view)
@@ -555,7 +563,7 @@ DBI::dbExecute(con, create_data_view)
 # Continuous data view ----------------------------------------------------
 
 create_cont_data_view <- "CREATE VIEW vw_cont_data AS
-SELECT 
+SELECT
 a.OrganizationID
 ,a.MLocID
 ,b.StationDes
@@ -597,7 +605,7 @@ a.OrganizationID
 ,b.pH_code
 
 From continuous_data a
-LEFT OUTER JOIN 
+LEFT OUTER JOIN
 Stations b ON a.OrganizationID = b.OrgID AND a.MLocID = b.MLocID
 order by a.MLocID, a.SampleStartDate, a.SampleStartTime"
 
