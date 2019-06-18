@@ -3,7 +3,8 @@
 #'
 #' Retrive data from a water quality SQLite database. Queries the vw_data_all view only. Function is a SQLite version of the AWQMS_Data function from the AWQMS_Data package.
 #'
-#' @param sqlite_db The path and file name to the SQLite database.
+#' @param db The path and file name to the SQLite database.
+#' @param table The db table to query. By default this is set to "vw_data_all". The continuous data table is "vw_cont_data".
 #' @param startdate Required parameter setting the startdate of the data being fetched. Format 'yyyy-mm-dd'
 #' @param enddate Optional parameter setting the enddate of the data being fetched. Format 'yyyy-mm-dd'
 #' @param station Optional vector of stations to be fetched
@@ -20,12 +21,12 @@
 #' @param crit_codes If true, include standard codes used in determining criteria
 #' @return Dataframe from the water quality database
 #' @example
-#' read_wqdb(sqlite_db="test.db", startdate = "2017-01-01", enddate = "2000-12-31", station = c("10591-ORDEQ", "29542-ORDEQ"))
+#' read_wqdb(db="test.db", startdate = "2017-01-01", enddate = "2000-12-31", station = c("10591-ORDEQ", "29542-ORDEQ"))
 #' @export
 #'
 #'
 
-read_wqdb <- function(sqlite_db, startdate = "1949-09-15", enddate = NULL, station = NULL,
+read_wqdb <- function(db, table="vw_data_all", startdate="1949-09-15", enddate = NULL, station = NULL,
                       project = NULL, char = NULL, stat_base = NULL,
                       media = NULL, org = NULL, HUC8 = NULL, HUC8_Name = NULL,
                       HUC10 = NULL, HUC12 = NULL,  HUC12_Name = NULL) {
@@ -35,15 +36,13 @@ read_wqdb <- function(sqlite_db, startdate = "1949-09-15", enddate = NULL, stati
   library(glue)
 
   # Build base query language
-  query <- "SELECT a.* FROM  vw_data_all a WHERE SampleStartDate >= Convert(datetime, {startdate})"
-  #query.cont <- "SELECT a.* FROM vw_cont_data a WHERE SampleStartDate >= Convert(datetime, {startdate})"
-
+  query <- paste0("SELECT a.* FROM ", table," a WHERE date(a.SampleStartDate) >= date({startdate})")
 
   # Conditially add addional parameters
 
   # add end date
   if (length(enddate) > 0) {
-    query = paste0(query, "\n AND a.SampleStartDate <= Convert(datetime, {enddate})" )
+    query = paste0(query, "\n AND date(a.SampleStartDate) <= date({enddate})" )
   }
 
 
@@ -116,7 +115,7 @@ read_wqdb <- function(sqlite_db, startdate = "1949-09-15", enddate = NULL, stati
   }
 
 
-  con <- DBI::dbConnect(RSQLite::SQLite(), sqlite_db)
+  con <- DBI::dbConnect(RSQLite::SQLite(), db)
 
   # Create query language
   query.sql <- glue::glue_sql(query,.con = con)
