@@ -1,0 +1,132 @@
+
+#' Retrive data from a water quality SQLite database.
+#'
+#' Retrive data from a water quality SQLite database. Queries the vw_data_all view only. Function is a SQLite version of the AWQMS_Data function from the AWQMS_Data package.
+#'
+#' @param sqlite_db The path and file name to the SQLite database.
+#' @param startdate Required parameter setting the startdate of the data being fetched. Format 'yyyy-mm-dd'
+#' @param enddate Optional parameter setting the enddate of the data being fetched. Format 'yyyy-mm-dd'
+#' @param station Optional vector of stations to be fetched
+#' @param project Optional vector of projects to be fetched
+#' @param char Optional vector of characteristics to be fetched
+#' @param stat_base Optional vector of Result Stattistical Bases to be fetched ex. Maximum
+#' @param media Optional vector of sample media to be fetched
+#' @param org optional vector of Organizations to be fetched
+#' @param HUC8 Optional vector of HUC8 codes to be fetched
+#' @param HUC8_Name Optional vector of HUC8 names to be fetched
+#' @param HUC10 Optional vector of HUC10s to be fetched
+#' @param HUC12 Optional vector of HUC12s to be fetched
+#' @param HUC12_Name Optional vector of HUC12 names to be fetched
+#' @param crit_codes If true, include standard codes used in determining criteria
+#' @return Dataframe from the water quality database
+#' @example
+#' read_wqdb(sqlite_db="test.db", startdate = "2017-01-01", enddate = "2000-12-31", station = c("10591-ORDEQ", "29542-ORDEQ"))
+#' @export
+#'
+#'
+
+read_wqdb <- function(sqlite_db, startdate = "1949-09-15", enddate = NULL, station = NULL,
+                      project = NULL, char = NULL, stat_base = NULL,
+                      media = NULL, org = NULL, HUC8 = NULL, HUC8_Name = NULL,
+                      HUC10 = NULL, HUC12 = NULL,  HUC12_Name = NULL) {
+
+  library(RSQLite)
+  library(DBI)
+  library(glue)
+
+  # Build base query language
+  query <- "SELECT a.* FROM  vw_data_all a WHERE SampleStartDate >= Convert(datetime, {startdate})"
+  #query.cont <- "SELECT a.* FROM vw_cont_data a WHERE SampleStartDate >= Convert(datetime, {startdate})"
+
+
+  # Conditially add addional parameters
+
+  # add end date
+  if (length(enddate) > 0) {
+    query = paste0(query, "\n AND a.SampleStartDate <= Convert(datetime, {enddate})" )
+  }
+
+
+  # station
+  if (length(station) > 0) {
+
+    query = paste0(query, "\n AND a.MLocID IN ({station*})")
+  }
+
+  #Project
+
+  if (length(project) > 0) {
+    query = paste0(query, "\n AND (a.Project1 in ({project*}) OR a.Project2 in ({project*})) ")
+
+  }
+
+  # characteristic
+  if (length(char) > 0) {
+    query = paste0(query, "\n AND a.Char_Name in ({char*}) ")
+
+  }
+
+  #statistical base
+  if(length(stat_base) > 0){
+    query = paste0(query, "\n AND a.Statistical_Base in ({stat_base*}) ")
+
+  }
+
+  # sample media
+  if (length(media) > 0) {
+    query = paste0(query, "\n AND a.SampleMedia in ({media*}) ")
+
+  }
+
+  # organization
+  if (length(org) > 0){
+    query = paste0(query,"\n AND a.OrganizationID in ({org*}) " )
+
+  }
+
+  #HUC8
+
+  if(length(HUC8) > 0){
+    query = paste0(query,"\n AND a.HUC8 in ({HUC8*}) " )
+
+  }
+
+
+  #HUC8_Name
+
+  if(length(HUC8_Name) > 0){
+    query = paste0(query,"\n AND a.HUC8_Name in ({HUC8_Name*}) " )
+
+  }
+
+  if(length(HUC10) > 0){
+    query = paste0(query,"\n AND a.HUC10 in ({HUC10*}) " )
+
+  }
+
+  if(length(HUC12) > 0){
+    query = paste0(query,"\n AND a.HUC12 in ({HUC12*}) " )
+
+  }
+
+
+  if(length(HUC12_Name) > 0){
+    query = paste0(query,"\n AND a.HUC12_Name in ({HUC12_Name*}) " )
+
+  }
+
+
+  con <- DBI::dbConnect(RSQLite::SQLite(), sqlite_db)
+
+  # Create query language
+  query.sql <- glue::glue_sql(query,.con = con)
+  data_fetch <- DBI::dbGetQuery(con, query.sql)
+
+  DBI::dbDisconnect(con)
+
+  return(data_fetch)
+
+}
+
+
+
