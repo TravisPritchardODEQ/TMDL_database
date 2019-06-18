@@ -2,8 +2,8 @@
 #'
 #'Imports a dataframe returned by AWQMSdata::AWQMS_data() and inserts it into an existing SQLite database created using the create_wq_db() function. Data is inserted in the 'AWQMS_data' table. Note, trying to load in duplicate records will cause an error.
 #'
-#' @param AWQMS_df  A dataframe to be imported into the SQLite database. This data frame is often returned by AWQMSdata::AWQMS_data().
-#' @param sqlite_db The path and file name to the SQLite database where the AWQMS_df will be imported into.
+#' @param df  The AWQMS dataframe to be imported into the SQLite database. This data frame is often returned by AWQMSdata::AWQMS_data().
+#' @param db The path and file name to the SQLite database where df will be imported into.
 #' @keywords AWQMS
 #' @export
 #' @return None
@@ -20,13 +20,13 @@
 #'
 #'create_wq_db("Jenny_Creek.db")
 #'
-#'import_AWQMS_data(AWQMS_df=df.awqms,
-#'                  sqlite_db="Jenny_Creek.db")
+#'import_AWQMS_data(df=df.awqms,
+#'                  db="Jenny_Creek.db")
 #'import_stations_db(mlocs=unique(df.awqms$MLocID),
-#'                   sqlite_db="Jenny_Creek.db",
+#'                   db="Jenny_Creek.db",
 #'                   stations_db = "STATIONS")
 
-import_AWQMS_data <- function(AWQMS_df, sqlite_db){
+import_AWQMS_data <- function(df, db){
 
 
   library(RSQLite)
@@ -103,9 +103,9 @@ import_AWQMS_data <- function(AWQMS_df, sqlite_db){
   )
 
 
-  import_data <- AWQMS_df[,AWQMS.cols]
+  import_data <- df[,AWQMS.cols]
 
-  con <- DBI::dbConnect(RSQLite::SQLite(), sqlite_db)
+  con <- DBI::dbConnect(RSQLite::SQLite(), db)
   DBI::dbWriteTable(con, 'AWQMS_data', value= import_data, append = TRUE)
   DBI::dbDisconnect(con)
 

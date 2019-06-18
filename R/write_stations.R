@@ -19,17 +19,17 @@
 #'     Datum: string - Horizontal Datum. Valid values include: "NAD27" for North American Datum 1927,
 #'     "NAD83" for North American Datum 1983, and "WGS84" for World Geodetic System 1984
 #'
-#' @param sqlite_db The path and file name to the SQLite database where the stations data will be imported into.
+#' @param db The path and file name to the SQLite database where the stations data will be imported into.
 #' @keywords stations
 #' @export
 
-write_stations <- function(stations, sqlite_db){
+write_stations <- function(stations, db){
 
   library(RSQLite)
   library(DBI)
   library(glue)
 
-con <- DBI::dbConnect(RSQLite::SQLite(), sqlite_db)
+con <- DBI::dbConnect(RSQLite::SQLite(), db)
 DBI::dbWriteTable(con, 'Stations', value= stations, append = TRUE)
 DBI::dbDisconnect(con)
 

@@ -2,18 +2,18 @@
 #'
 #' Create a SQLite database with table fields identical to Oregon DEQ's AWQMS and Stations database.
 #'
-#' @param sqlite_db The path and file name to the new SQLite database to be created.
+#' @param db The path and file name to the new SQLite database to be created.
 #' @keywords database, sqlite
 #' @export
 #' @return None
 #'
-create_wq_db <- function(sqlite_db){
+create_wq_db <- function(db){
 
   library(RSQLite)
   library(DBI)
   library(glue)
 
-con <- DBI::dbConnect(RSQLite::SQLite(), sqlite_db)
+con <- DBI::dbConnect(RSQLite::SQLite(), db)
 
 # Create lookup tables ----------------------------------------------------
 
