@@ -4,10 +4,10 @@
 \alias{create_wq_db}
 \title{Create and format a water quality SQLite database.}
 \usage{
-create_wq_db(sqlite_db)
+create_wq_db(db)
 }
 \arguments{
-\item{sqlite_db}{The path and file name to the new SQLite database to be created.}
+\item{db}{The path and file name to the new SQLite database to be created.}
 }
 \value{
 None

@@ -4,12 +4,12 @@
 \alias{import_AWQMS_data}
 \title{Import AWQMS data into a SQLite database}
 \usage{
-import_AWQMS_data(AWQMS_df, sqlite_db)
+import_AWQMS_data(df, db)
 }
 \arguments{
-\item{AWQMS_df}{A dataframe to be imported into the SQLite database. This data frame is often returned by AWQMSdata::AWQMS_data().}
+\item{df}{The AWQMS dataframe to be imported into the SQLite database. This data frame is often returned by AWQMSdata::AWQMS_data().}
 
-\item{sqlite_db}{The path and file name to the SQLite database where the AWQMS_df will be imported into.}
+\item{db}{The path and file name to the SQLite database where df will be imported into.}
 }
 \value{
 None
@@ -30,10 +30,10 @@ df.awqms <- AWQMS_Data(startdate = "1995-01-01",
 
 create_wq_db("Jenny_Creek.db")
 
-import_AWQMS_data(AWQMS_df=df.awqms,
-                 sqlite_db="Jenny_Creek.db")
+import_AWQMS_data(df=df.awqms,
+                 db="Jenny_Creek.db")
 import_stations_db(mlocs=unique(df.awqms$MLocID),
-                  sqlite_db="Jenny_Creek.db",
+                  db="Jenny_Creek.db",
                   stations_db = "STATIONS")
 }
 \keyword{AWQMS}

@@ -4,13 +4,15 @@
 \alias{read_wqdb}
 \title{Retrive data from a water quality SQLite database.}
 \usage{
-read_wqdb(sqlite_db, startdate = "1949-09-15", enddate = NULL,
-  station = NULL, project = NULL, char = NULL, stat_base = NULL,
-  media = NULL, org = NULL, HUC8 = NULL, HUC8_Name = NULL,
-  HUC10 = NULL, HUC12 = NULL, HUC12_Name = NULL)
+read_wqdb(db, table = "vw_data_all", startdate = "1949-09-15",
+  enddate = NULL, station = NULL, project = NULL, char = NULL,
+  stat_base = NULL, media = NULL, org = NULL, HUC8 = NULL,
+  HUC8_Name = NULL, HUC10 = NULL, HUC12 = NULL, HUC12_Name = NULL)
 }
 \arguments{
-\item{sqlite_db}{The path and file name to the SQLite database.}
+\item{db}{The path and file name to the SQLite database.}
+
+\item{table}{The db table to query. By default this is set to "vw_data_all". The continuous data table is "vw_cont_data".}
 
 \item{startdate}{Required parameter setting the startdate of the data being fetched. Format 'yyyy-mm-dd'}
 

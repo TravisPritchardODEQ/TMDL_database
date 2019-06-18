@@ -4,12 +4,12 @@
 \alias{import_stations_db}
 \title{Import station info into a SQLite database.}
 \usage{
-import_stations_db(mlocs, sqlite_db, stations_db = "STATIONS")
+import_stations_db(mlocs, db, stations_db = "STATIONS")
 }
 \arguments{
 \item{mlocs}{Vector of unique monitoring location station IDs (MLocIDs) to retrieve from DEQ's Stations database.}
 
-\item{sqlite_db}{The path and file name to the SQLite database where the stations data will be imported into.}
+\item{db}{The path and file name to the SQLite database where the stations data will be imported into.}
 
 \item{stations_db}{Stations database ODBC system data source name (DSN) identifed the ODBC data sources administrator. Default is "STATIONS".}
 }
@@ -33,9 +33,9 @@ df.awqms <- AWQMS_Data(startdate = "1995-01-01",
 create_wq_db("Jenny_Creek.db")
 
 import_AWQMS_data(AWQMS_df=df.awqms,
-                 sqlite_db="Jenny_Creek.db")
+                 db="Jenny_Creek.db")
 import_stations_db(mlocs=unique(df.awqms$MLocID),
-                  sqlite_db="Jenny_Creek.db",
+                  db="Jenny_Creek.db",
                   stations_db = "STATIONS")
 }
 \keyword{stations}

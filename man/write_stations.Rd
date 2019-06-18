@@ -4,7 +4,7 @@
 \alias{write_stations}
 \title{Write Station Info into a wqdb SQLite Database.}
 \usage{
-write_stations(stations, sqlite_db)
+write_stations(stations, db)
 }
 \arguments{
 \item{stations}{Dataframe of monitoring location station information to
@@ -24,7 +24,7 @@ write_stations(stations, sqlite_db)
     Datum: string - Horizontal Datum. Valid values include: "NAD27" for North American Datum 1927,
     "NAD83" for North American Datum 1983, and "WGS84" for World Geodetic System 1984}
 
-\item{sqlite_db}{The path and file name to the SQLite database where the stations data will be imported into.}
+\item{db}{The path and file name to the SQLite database where the stations data will be imported into.}
 }
 \description{
 Take a dataframe of monitoring location station information and write it to the stations table in a water quality SQLite database. Note - trying to load in duplicate values will cause an error.
