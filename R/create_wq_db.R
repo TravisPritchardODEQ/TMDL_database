@@ -318,6 +318,7 @@ cont_table_create <- 'CREATE TABLE "continuous_data" (
   "MLocID"	TEXT NOT NULL,
   "SampleStartDate"	TEXT NOT NULL,
   "SampleStartTime"	TEXT NOT NULL,
+  "SampleStartTZ" TEXT NOT NULL,
   "SampleMedia"	TEXT,
   "MediaSubdivisionName"	TEXT,
   "Result_Depth"	REAL,
