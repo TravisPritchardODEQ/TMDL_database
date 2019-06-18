@@ -1,8 +1,8 @@
-# wq_dblite
+# wqdblite
 
-wq_dblite are a series of R functions to import water quality data and stations information into a SQLite database.
+wqdblite is an R package containing a series functions to create a SQLite database with table schema that mirrors Oregon DEQ's AWQMS and Stations databases. The package was built to facilitate accessing and archiving water quality data used in various analysis projects after it has been gathered from other sources. SQLite databases are portable and self-contained hence can be saved within the project folder but also retain most of the SQL functionality and hence can be accessed and queried using standard scripting.
 
-To use the the wq_dblite import functions, you need ODBC connections to DEQ's AWQMS and Stations databases. 
+To use the the wqdblite import functions, you need ODBC connections to DEQ's AWQMS and Stations databases. 
 
 The database functions use the following R packages:
 
