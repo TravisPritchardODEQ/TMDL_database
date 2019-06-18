@@ -2,6 +2,6 @@
 
 export(create_wq_db)
 export(import_AWQMS_data)
-export(import_stations)
 export(import_stations_db)
 export(read_wqdb)
+export(write_stations)
