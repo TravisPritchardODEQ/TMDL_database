@@ -1,4 +1,4 @@
-#' Write Station Info into a wqdb SQLite Database.
+#' Write Station Info into a wqdb formatted SQLite Database.
 #'
 #' Take a dataframe of monitoring location station information and write it to the stations table in a water quality SQLite database. Note - trying to load in duplicate values will cause an error.
 #'
@@ -30,7 +30,7 @@ write_stations <- function(stations, db){
   library(glue)
 
 con <- DBI::dbConnect(RSQLite::SQLite(), db)
-DBI::dbWriteTable(con, 'Stations', value= stations, append = TRUE)
+DBI::dbWriteTable(con, 'Stations', value=stations, append = TRUE)
 DBI::dbDisconnect(con)
 
 }

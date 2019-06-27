@@ -1,10 +1,10 @@
 
-#' Retrive data from a water quality SQLite database.
+#' Retrive data from a wqdb formatted SQLite Database.
 #'
-#' Retrive data from a water quality SQLite database. Queries the vw_data_all view only. Function is a SQLite version of the AWQMS_Data function from the AWQMS_Data package.
+#' Retrive data from a water quality formatted SQLite database. Function is a SQLite version of the AWQMS_Data() function from the AWQMS_Data package.
 #'
 #' @param db The path and file name to the SQLite database.
-#' @param table The db table to query. By default this is set to "vw_data_all". The continuous data table is "vw_cont_data".
+#' @param table The db table to query. By default this is set to "vw_discrete". The continuous data table is "vw_continuous".
 #' @param startdate Required parameter setting the startdate of the data being fetched. Format 'yyyy-mm-dd'
 #' @param enddate Optional parameter setting the enddate of the data being fetched. Format 'yyyy-mm-dd'
 #' @param station Optional vector of stations to be fetched
@@ -26,7 +26,7 @@
 #'
 #'
 
-read_wqdb <- function(db, table="vw_data_all", startdate="1949-09-15", enddate = NULL, station = NULL,
+read_wqdb <- function(db, table="vw_discrete", startdate="1949-09-15", enddate = NULL, station = NULL,
                       project = NULL, char = NULL, stat_base = NULL,
                       media = NULL, org = NULL, HUC8 = NULL, HUC8_Name = NULL,
                       HUC10 = NULL, HUC12 = NULL,  HUC12_Name = NULL) {
