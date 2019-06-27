@@ -43,7 +43,7 @@ read_wqdb(db, table = "vw_discrete", startdate = "1949-09-15",
 \item{crit_codes}{If true, include standard codes used in determining criteria}
 }
 \value{
-Dataframe from the water quality database
+Dataframe from a wqdb formatted database
 }
 \description{
 Retrive data from a water quality formatted SQLite database. Function is a SQLite version of the AWQMS_Data() function from the AWQMS_Data package.
