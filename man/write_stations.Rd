@@ -2,7 +2,7 @@
 % Please edit documentation in R/write_stations.R
 \name{write_stations}
 \alias{write_stations}
-\title{Write Station Info into a wqdb SQLite Database.}
+\title{Write Station Info into a wqdb formatted SQLite Database.}
 \usage{
 write_stations(stations, db)
 }

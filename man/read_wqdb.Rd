@@ -2,9 +2,9 @@
 % Please edit documentation in R/read_wqdb.R
 \name{read_wqdb}
 \alias{read_wqdb}
-\title{Retrive data from a water quality SQLite database.}
+\title{Retrive data from a wqdb formatted SQLite Database.}
 \usage{
-read_wqdb(db, table = "vw_data_all", startdate = "1949-09-15",
+read_wqdb(db, table = "vw_discrete", startdate = "1949-09-15",
   enddate = NULL, station = NULL, project = NULL, char = NULL,
   stat_base = NULL, media = NULL, org = NULL, HUC8 = NULL,
   HUC8_Name = NULL, HUC10 = NULL, HUC12 = NULL, HUC12_Name = NULL)
@@ -12,7 +12,7 @@ read_wqdb(db, table = "vw_data_all", startdate = "1949-09-15",
 \arguments{
 \item{db}{The path and file name to the SQLite database.}
 
-\item{table}{The db table to query. By default this is set to "vw_data_all". The continuous data table is "vw_cont_data".}
+\item{table}{The db table to query. By default this is set to "vw_discrete". The continuous data table is "vw_continuous".}
 
 \item{startdate}{Required parameter setting the startdate of the data being fetched. Format 'yyyy-mm-dd'}
 
@@ -46,5 +46,5 @@ read_wqdb(db, table = "vw_data_all", startdate = "1949-09-15",
 Dataframe from the water quality database
 }
 \description{
-Retrive data from a water quality SQLite database. Queries the vw_data_all view only. Function is a SQLite version of the AWQMS_Data function from the AWQMS_Data package.
+Retrive data from a water quality formatted SQLite database. Function is a SQLite version of the AWQMS_Data() function from the AWQMS_Data package.
 }
