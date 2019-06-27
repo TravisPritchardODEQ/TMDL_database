@@ -1,4 +1,4 @@
-#' Create a water quality SQLite database.
+#' Create a wqdb formatted SQLite database.
 #'
 #' Create a SQLite database with table fields identical to Oregon DEQ's AWQMS and Stations database.
 #' If the database already exists this function will check if the tables exist and create them if not.
@@ -16,7 +16,7 @@
 #' @export
 #' @return None
 #'
-create_wq_db <- function(db){
+create_wqdb <- function(db){
 
   library(RSQLite)
   library(DBI)
