@@ -19,7 +19,7 @@
 #' @param HUC12 Optional vector of HUC12s to be fetched
 #' @param HUC12_Name Optional vector of HUC12 names to be fetched
 #' @param crit_codes If true, include standard codes used in determining criteria
-#' @return Dataframe from the water quality database
+#' @return Dataframe from a wqdb formatted database
 #' @example
 #' read_wqdb(db="test.db", startdate = "2017-01-01", enddate = "2000-12-31", station = c("10591-ORDEQ", "29542-ORDEQ"))
 #' @export
