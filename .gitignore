@@ -3,5 +3,6 @@
 .RData
 .Ruserdata
 *.db
-cont_data.xlsx
-cont_data.csv
+example*
+templates*
+Table_structures.xlsx
