@@ -4,5 +4,5 @@
 .Ruserdata
 *.db
 example*
-templates*
+templates
 Table_structures.xlsx
