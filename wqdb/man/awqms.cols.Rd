@@ -7,7 +7,7 @@
 awqms.cols()
 }
 \value{
-None
+Vector of column names
 }
 \description{
 Returns a vector of column names used in the awqms table in a wqdb.

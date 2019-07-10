@@ -6,8 +6,8 @@
 \usage{
 read_wqdb(db, table = "vw_discrete", startdate = "1949-09-15",
   enddate = NULL, station = NULL, project = NULL, char = NULL,
-  stat_base = NULL, media = NULL, org = NULL, HUC8 = NULL,
-  HUC8_Name = NULL, HUC10 = NULL, HUC12 = NULL, HUC12_Name = NULL)
+  stat_base = NULL, media = NULL, org = NULL, huc8 = NULL,
+  huc8_name = NULL, huc10 = NULL, huc12 = NULL, huc12_name = NULL)
 }
 \arguments{
 \item{db}{The path and file name to the SQLite database.}
@@ -30,15 +30,15 @@ read_wqdb(db, table = "vw_discrete", startdate = "1949-09-15",
 
 \item{org}{optional vector of Organizations to be fetched}
 
-\item{HUC8}{Optional vector of HUC8 codes to be fetched}
+\item{huc8}{Optional vector of HUC8 codes to be fetched}
 
-\item{HUC8_Name}{Optional vector of HUC8 names to be fetched}
+\item{huc8_name}{Optional vector of HUC8 names to be fetched}
 
-\item{HUC10}{Optional vector of HUC10s to be fetched}
+\item{hUC10}{Optional vector of HUC10s to be fetched}
 
-\item{HUC12}{Optional vector of HUC12s to be fetched}
+\item{hUC12}{Optional vector of HUC12s to be fetched}
 
-\item{HUC12_Name}{Optional vector of HUC12 names to be fetched}
+\item{hUC12_name}{Optional vector of HUC12 names to be fetched}
 
 \item{crit_codes}{If true, include standard codes used in determining criteria}
 }

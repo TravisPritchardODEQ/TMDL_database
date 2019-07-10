@@ -26,6 +26,9 @@ write_stations(stations, db)
 
 \item{db}{The path and file name to the SQLite database where the stations data will be imported into.}
 }
+\value{
+None
+}
 \description{
 Take a dataframe of monitoring location station information and write it to the stations table in a water quality SQLite database. Note - trying to load in duplicate values will cause an error.
 }

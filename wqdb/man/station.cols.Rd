@@ -7,7 +7,7 @@
 station.cols()
 }
 \value{
-None
+Vector of column names
 }
 \description{
 Returns a vector of column names used in the stations table in a wqdb.
