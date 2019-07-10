@@ -4,7 +4,7 @@
 
 #' @keywords Continous
 #' @export
-#' @return None
+#' @return Vector of column names
 
 cont.cols <- function(){
 
