@@ -22,6 +22,7 @@
 #' @param db The path and file name to the SQLite database where the stations data will be imported into.
 #' @keywords stations
 #' @export
+#' @return None
 
 write_stations <- function(stations, db){
 
