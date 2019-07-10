@@ -13,11 +13,11 @@
 #' @param stat_base Optional vector of Result Stattistical Bases to be fetched ex. Maximum
 #' @param media Optional vector of sample media to be fetched
 #' @param org optional vector of Organizations to be fetched
-#' @param HUC8 Optional vector of HUC8 codes to be fetched
-#' @param HUC8_Name Optional vector of HUC8 names to be fetched
-#' @param HUC10 Optional vector of HUC10s to be fetched
-#' @param HUC12 Optional vector of HUC12s to be fetched
-#' @param HUC12_Name Optional vector of HUC12 names to be fetched
+#' @param huc8 Optional vector of HUC8 codes to be fetched
+#' @param huc8_name Optional vector of HUC8 names to be fetched
+#' @param hUC10 Optional vector of HUC10s to be fetched
+#' @param hUC12 Optional vector of HUC12s to be fetched
+#' @param hUC12_name Optional vector of HUC12 names to be fetched
 #' @param crit_codes If true, include standard codes used in determining criteria
 #' @return Dataframe from a wqdb formatted database
 #' @example
@@ -28,8 +28,8 @@
 
 read_wqdb <- function(db, table="vw_discrete", startdate="1949-09-15", enddate = NULL, station = NULL,
                       project = NULL, char = NULL, stat_base = NULL,
-                      media = NULL, org = NULL, HUC8 = NULL, HUC8_Name = NULL,
-                      HUC10 = NULL, HUC12 = NULL,  HUC12_Name = NULL) {
+                      media = NULL, org = NULL, huc8 = NULL, huc8_name = NULL,
+                      huc10 = NULL, huc12 = NULL,  huc12_name = NULL) {
 
   library(RSQLite)
   library(DBI)
@@ -85,32 +85,32 @@ read_wqdb <- function(db, table="vw_discrete", startdate="1949-09-15", enddate =
 
   #HUC8
 
-  if(length(HUC8) > 0){
-    query = paste0(query,"\n AND a.HUC8 in ({HUC8*}) " )
+  if(length(huc8) > 0){
+    query = paste0(query,"\n AND a.HUC8 in ({huc8*}) " )
 
   }
 
 
   #HUC8_Name
 
-  if(length(HUC8_Name) > 0){
-    query = paste0(query,"\n AND a.HUC8_Name in ({HUC8_Name*}) " )
+  if(length(huc8_name) > 0){
+    query = paste0(query,"\n AND a.HUC8_Name in ({huc8_name*}) " )
 
   }
 
-  if(length(HUC10) > 0){
-    query = paste0(query,"\n AND a.HUC10 in ({HUC10*}) " )
+  if(length(huc10) > 0){
+    query = paste0(query,"\n AND a.HUC10 in ({huc10*}) " )
 
   }
 
-  if(length(HUC12) > 0){
-    query = paste0(query,"\n AND a.HUC12 in ({HUC12*}) " )
+  if(length(huc12) > 0){
+    query = paste0(query,"\n AND a.HUC12 in ({huc12*}) " )
 
   }
 
 
-  if(length(HUC12_Name) > 0){
-    query = paste0(query,"\n AND a.HUC12_Name in ({HUC12_Name*}) " )
+  if(length(huc12_name) > 0){
+    query = paste0(query,"\n AND a.HUC12_Name in ({huc12_name*}) " )
 
   }
 
