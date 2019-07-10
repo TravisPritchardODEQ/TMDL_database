@@ -4,7 +4,7 @@
 
 #' @keywords AWQMS
 #' @export
-#' @return None
+#' @return Vector of column names
 
 awqms.cols <- function(){
 
