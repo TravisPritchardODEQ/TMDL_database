@@ -4,7 +4,7 @@
 
 #' @keywords stations
 #' @export
-#' @return None
+#' @return Vector of column names
 #'
 station.cols <- function() {
 
@@ -78,5 +78,5 @@ station.cols <- function() {
                     'UserName',
                     'Created_Date')
 
-  return(stations_cols)
+  return(station_cols)
 }
