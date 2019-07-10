@@ -4,7 +4,7 @@
 #' If the database already exists this function will check if the tables exist and create them if not.
 #' Tables created include:
 #' 'stations':  Table of station information
-#' 'characteristics' Table of AWQMS charateristics. Same as the table returned from wqdblite::AWQMS_chars()
+#' 'characteristics' Table of AWQMS charateristics. Same as the table returned from wqdb::AWQMS_chars()
 #' 'awqms' Table of AWQMS data
 #' 'other' Table of non AWQMS data
 #' 'continuous' Table of continous data
@@ -37,7 +37,7 @@ create_wqdb <- function(db){
   query <- glue::glue_sql(char_create,.con = con)
   DBI::dbExecute(con, query)
 
-  DBI::dbWriteTable(con, 'characteristics', value= wqdblite::AWQMS_chars, overwrite = TRUE)
+  DBI::dbWriteTable(con, 'characteristics', value= wqdb::AWQMS_chars, overwrite = TRUE)
 
   # Stations ----------------------------------------------------------------
 
