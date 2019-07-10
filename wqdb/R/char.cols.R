@@ -4,7 +4,7 @@
 
 #' @keywords characteristics
 #' @export
-#' @return None
+#' @return Vector of column names
 #'
 
 char.cols <- function() {
