@@ -7,7 +7,7 @@ devtools::install_github("TravisPritchardODEQ/AWQMSdata", host = "https://api.gi
 library(wqdb)
 library(AWQMSdata)
 
-# tations database ODBC system data source name (DSN) identifed the ODBC data sources administrator. Default is usually "STATIONS".
+# stations database ODBC system data source name (DSN) identifed the ODBC data sources administrator. Default is usually "STATIONS".
 stations_odbc <- "STATIONS"
 
 setwd("E:/GitHub/wqdb/example")
@@ -23,7 +23,6 @@ df.awqms <- AWQMS_Data(startdate = "1995-01-01", enddate = "2002-12-31",
            station = mlocs,
            crit_codes = TRUE,
            filterQC = TRUE)
-
 
 # create and write data into the db
 write_wqdb(db="Jenny_Creek.db",awqms=df.awqms, stations=df.stations)
