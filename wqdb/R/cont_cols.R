@@ -6,9 +6,9 @@
 #' @export
 #' @return Vector of column names
 
-cont.cols <- function(){
+cont_cols <- function(){
 
-  cont_cols <- c('OrganizationID'
+  cont.cols <- c('OrganizationID'
                  ,'Org_Name'
                  ,'Project1'
                  ,'Project2'
@@ -29,5 +29,5 @@ cont.cols <- function(){
                  ,'Result_Unit'
                  ,'EquipmentID')
 
-  return(cont_cols)
+  return(cont.cols)
 }

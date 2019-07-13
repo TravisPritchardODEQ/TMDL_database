@@ -7,11 +7,11 @@
 #' @return Vector of column names
 #'
 
-char.cols <- function() {
+char_cols <- function() {
 
-  char_cols <- c('chr_uid',
+  char.cols <- c('chr_uid',
                  'Char_Name',
                  'CASNumber')
-  return(char_cols)
+  return(char.cols)
 
 }

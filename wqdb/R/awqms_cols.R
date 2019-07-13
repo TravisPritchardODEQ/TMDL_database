@@ -6,9 +6,9 @@
 #' @export
 #' @return Vector of column names
 
-awqms.cols <- function(){
+awqms_cols <- function(){
 
-  awqms_cols <- c('OrganizationID'
+  awqms.cols <- c('OrganizationID'
                   ,'Org_Name'
                   ,'Project1'
                   ,'Project2'
@@ -78,5 +78,5 @@ awqms.cols <- function(){
                   ,'WQX_submit_date'
   )
 
-  return(awqms_cols)
+  return(awqms.cols)
 }

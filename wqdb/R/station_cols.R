@@ -6,9 +6,9 @@
 #' @export
 #' @return Vector of column names
 #'
-station.cols <- function() {
+station_cols <- function() {
 
-  station_cols <- c('OrgID',
+  station.cols <- c('OrgID',
                     'station_key',
                     'MLocID',
                     'StationDes',
@@ -78,5 +78,5 @@ station.cols <- function() {
                     'UserName',
                     'Created_Date')
 
-  return(station_cols)
+  return(station.cols)
 }

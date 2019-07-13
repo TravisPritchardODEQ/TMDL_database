@@ -26,8 +26,8 @@ write_wqdb <- function(db, awqms=NULL, other=NULL, continuous=NULL, stations=NUL
 
   if(!is.null(awqms)) {
 
-    awqms_cols <- wqdb::awqms.cols()
-    import_data <- awqms[,names(awqms) %in% awqms_cols]
+    awqms.cols <- wqdb::awqms_cols()
+    import_data <- awqms[,names(awqms) %in% awqms.cols]
 
     con <- DBI::dbConnect(RSQLite::SQLite(), db)
     DBI::dbWriteTable(conn=con, name="awqms", value=import_data, append = TRUE)
@@ -38,8 +38,8 @@ write_wqdb <- function(db, awqms=NULL, other=NULL, continuous=NULL, stations=NUL
 
   if(!is.null(other)) {
 
-    other_cols <- wqdb::awqms.cols()
-    import_data <- other[,names(other) %in% other_cols]
+    other.cols <- wqdb::awqms_cols()
+    import_data <- other[,names(other) %in% other.cols]
 
     con <- DBI::dbConnect(RSQLite::SQLite(), db)
     DBI::dbWriteTable(conn=con, name="other", value=import_data, append = TRUE)
@@ -49,8 +49,8 @@ write_wqdb <- function(db, awqms=NULL, other=NULL, continuous=NULL, stations=NUL
 
   if(!is.null(continuous)) {
 
-    cont_cols <- wqdb::cont.cols()
-    import_data <- continuous[,names(continuous) %in% cont_cols]
+    cont.cols <- wqdb::cont_cols()
+    import_data <- continuous[,names(continuous) %in% cont.cols]
 
     con <- DBI::dbConnect(RSQLite::SQLite(), db)
     DBI::dbWriteTable(conn=con, name="continuous", value=import_data, append = TRUE)
@@ -60,8 +60,8 @@ write_wqdb <- function(db, awqms=NULL, other=NULL, continuous=NULL, stations=NUL
 
   if(!is.null(stations)) {
 
-    station_cols <- wqdb::station.cols()
-    import_data <- stations[,names(stations) %in% station_cols]
+    station.cols <- wqdb::station_cols()
+    import_data <- stations[,names(stations) %in% station.cols]
 
     con <- DBI::dbConnect(RSQLite::SQLite(), db)
     DBI::dbWriteTable(conn=con, name="stations", value=import_data, append = TRUE)
@@ -71,8 +71,8 @@ write_wqdb <- function(db, awqms=NULL, other=NULL, continuous=NULL, stations=NUL
 
   if(!is.null(characteristics)) {
 
-    char_cols <- wqdb::char.cols()
-    import_data <- characteristics[,names(characteristics) %in% char_cols]
+    char.cols <- wqdb::char_cols()
+    import_data <- characteristics[,names(characteristics) %in% char.cols]
 
     con <- DBI::dbConnect(RSQLite::SQLite(), db)
     DBI::dbWriteTable(conn=con, name="characteristics", value=import_data, append = TRUE)
