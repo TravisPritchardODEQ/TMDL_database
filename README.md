@@ -1,8 +1,6 @@
-# wqdblite
+# wqdb
 
-wqdblite is an R package containing a series functions to create a SQLite database with table schema that mirrors Oregon DEQ's AWQMS and Stations databases. The package was built to facilitate accessing and archiving water quality data used in various analysis projects after it has been gathered from other sources. SQLite databases are portable and self-contained hence can be saved within the project folder but also retain most of the SQL functionality and hence can be accessed and queried using standard scripting.
-
-To use the the wqdblite import functions, you need ODBC connections to DEQ's AWQMS and Stations databases. 
+wqdb is an R package containing a series functions to create a SQLite database with table schema that mirrors Oregon DEQ's AWQMS and Stations databases. The package was built to facilitate accessing and archiving water quality data used in various analysis projects after it has been gathered from other sources. SQLite databases are portable and self-contained hence can be saved within the project folder. SQLite database also retain most of the SQL functionality and hence can be accessed and queried using standard scripting.
 
 The database functions use the following R packages:
 
@@ -13,46 +11,42 @@ The database functions use the following R packages:
 
 ## Creating a new water quality database
 
+**write_wqdb(db, awqms=NULL, other=NULL, continuous=NULL, stations=NULL, characteristics=NULL)** 
 
-### Populate new database with database infrastructure. 
+use write_wqdb() to create and/or write to a wqdb formatted SQLite database. If the wqdb database already exists this function will check if the tables exist and create them if not. If a dataframe is passed the data will be written into the tables. Duplicate records are checked and not overwritten.
 
-The function Create_database() in "Create_database.R" (Note - this might be made into a package in the future) will populate an empty database with an initial table and view structure to house discrete (including continuous data summary statistics) and continuous WQ data. More tables may be needed, depending on project needs.  
+ 1. **db** The path and file name to the new SQLite database to be created.
 
-**create_wq_db(sqlite_db)** sqlite_db uses the file name and pathway as an argument and populates the database with the following:
-
- 1. **Stations**
-     - Information about monitoring locations. This is intended to be pulled from the Stations database, but the user can add additional records
- 2. **Characteristics**
-     - A list of characteristics (parameters). The primary use of this table is to provide the valid values for the Char_Name field in AWQMS_data, Other_Data, and continuous_data tables.  This table is initially populated with the list of characteristics compatible with AWQMS as of 2009/04/25, but the user can add additional entries.  
- 3. **AWQMS_data**
-     - This table holds data exported from AWQMS using the AWQMS_data() function from the AWQMS_data package. Note that not all columns from the table exported from AWQMS_data() are brought into this table (information about stations is removed to save on storage space)
- 4. **Other_data**
-    - This table is functionally similar to the AWQMS_data table, but is designed to hold WQ data from sources outside of AWQMS_data
- 5. **continuous_data**
-     - This table hold raw continuous data. 
+ 2. **stations** Information about monitoring locations. This is intended to be pulled from the Stations database, but the user can add additional records
+ 
+ 3. **characteristics** A list of characteristics (parameters). The primary use of this table is to provide the valid values for the Char_Name field in the awqms, other, and continuous tables.  This table is initially populated with the list of characteristics compatible with AWQMS as of 2009/04/25, but the user can add additional entries.  
+     
+ 4. **awqms** This table holds data exported from AWQMS using the AWQMS_data() function from the AWQMS_data package. Note that not all columns from the table exported from AWQMS_data() are brought into this table (information about stations is removed to save on storage space)
+ 
+ 5. **other** This table is functionally similar to the 'awqms' table, but is designed to hold water quality data from sources outside of AWQMS.
+ 
+ 6. **continuous** This table holds raw continuous data. 
      
 The schemas for these tables can be found in **Table_structures.xlsx**.
 
 In addition to these tables, Create_database() also creates 2 data views:
 
- 1. **vw_Data_all**
-     - This view is a union with AWQMS_data and Other_data joined with the Stations table. This is intended to be the primary view to query against for analysis. 
- 2. **vw_cont_data**
-     - This view joins the continuous_data table with the Stations table. 
-     
-### Populate database with data
+ 1. **vw_discrete**
+     - This view is a union with 'awqms' and 'other' tables joined with the 'stations' table. This is intended to be the primary view to query against for analysis. 
+ 2. **vw_continuous**
+     - This view joins the 'continuous' table with the 'stations' table. 
+    
+## Functions
 
-#### Functions
-
-**inmport_stations_db()**  
-The function insert_stations_db() will take a vector of MLocIDs and query data from the Stations database. This query is then loaded in the Stations table in the specified SQLite database. Note - trying to load in duplicate values will cause an error.
-
-**import_AWQMS_data()** 
-The function import_AWQMS_data() will take a dataframe returned by AWQMS_data() in the AWQMS_data package and insert it into the AWQMS_data table. Note - trying to load in duplicate records will cause an error.  
-
-#### Templates
-
-Some templates to help with loading into the database can be found in the templates folder. Code to insert the results into the database still needs to be written, but will likely look a lot like import_AWQMS_data().
+awqms_cols()
+char_cols()
+cont_cols()
+create_wqdb()
+query_stations()
+read_wqdb()
+station_cols()
+write_stations()
+write_wqdb()
 
 
 ### OPTIONAL - Download and install SQLite3
@@ -70,7 +64,7 @@ If SQLite3 is not yet installed on your system, follow these directions:
 Optional:
 6. Download and install sqlitebrowser (https://sqlitebrowser.org/) or some other GUI for sqlite.
 
-### Create a new database
+### Create a new database using command line
 
 Open command line and execute the following:
 
