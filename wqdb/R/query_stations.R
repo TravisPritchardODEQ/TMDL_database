@@ -5,7 +5,7 @@
 #' This function will only work for employees of ODEQ. Requires read access permissions for internal odbc connections to
 #' the AWQMS and Stations databases.
 #'
-#' @param stations_odbc Stations database ODBC system data source name (DSN) identifed the ODBC data sources administrator. Default is "STATIONS".
+#' @param stations_odbc Stations database ODBC system data source name (DSN) identifed in the ODBC data sources administrator. Default is "STATIONS".
 #' @param mlocs Vector of unique monitoring location station IDs (MLocIDs).
 #' @param huc8_name Vector of unique huc8 names.
 #' @param huc10_name Vector of unique huc10 names.
