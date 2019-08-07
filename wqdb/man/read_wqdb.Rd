@@ -39,12 +39,18 @@ read_wqdb(db, table = "vw_discrete", startdate = "1949-09-15",
 \item{hUC12}{Optional vector of HUC12s to be fetched}
 
 \item{hUC12_name}{Optional vector of HUC12 names to be fetched}
-
-\item{crit_codes}{If true, include standard codes used in determining criteria}
 }
 \value{
 Dataframe from a wqdb formatted database
 }
 \description{
 Retrive data from a water quality formatted SQLite database. Function is a SQLite version of the AWQMS_Data() function from the AWQMS_Data package.
+}
+\examples{
+# get sample data
+applegate.awqms <- data(applegate_temps)
+applegate.stations <- data(applegate_stations)
+
+write_wqdb(db="applegate.db", awqms=applegate.awqms, stations=applegate.stations)
+read_wqdb(db="applegate.db", startdate = "2000-01-01", enddate = "2018-12-31", station = c("28359-ORDEQ", "10428-ORDEQ"))
 }

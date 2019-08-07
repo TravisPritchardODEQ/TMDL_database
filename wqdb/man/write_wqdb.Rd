@@ -29,5 +29,13 @@ Create and/or write to a wqdb formatted SQLite database. If the wqdb database al
 this function will check if the tables exist and create them if not.
 If a dataframe is passed the data will be written into the tables. Duplicate records are checked and not overwritten.
 }
+\examples{
+# get sample data
+applegate.awqms <- data(applegate_temps)
+applegate.stations <- data(applegate_stations)
+
+write_wqdb(db="applegate.db", awqms=applegate.awqms, stations=applegate.stations)
+
+}
 \keyword{database,}
 \keyword{sqlite}
