@@ -23,7 +23,7 @@
 #' @keywords stations
 #' @export
 #' @return None
-
+#'
 write_stations <- function(stations, db){
 
   library(RSQLite)
