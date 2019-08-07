@@ -15,6 +15,12 @@
 #' @keywords database, sqlite
 #' @export
 #' @return None
+#' @examples
+#' # get sample data
+#' applegate.awqms <- data(applegate_temps)
+#' applegate.stations <- data(applegate_stations)
+#'
+#' write_wqdb(db="applegate.db", awqms=applegate.awqms, stations=applegate.stations)
 #'
 write_wqdb <- function(db, awqms=NULL, other=NULL, continuous=NULL, stations=NULL, characteristics=NULL){
 
