@@ -2,6 +2,8 @@
 #'
 #' Retrieve station information from ODEQ's Stations database based on a set of query paramaters.
 #' If no query parameters are supplied to the function the entire stations database will be returned.
+#' This function will only work for employees of ODEQ. Requires read access permissions for internal odbc connections to
+#' the AWQMS and Stations databases.
 #'
 #' @param stations_odbc Stations database ODBC system data source name (DSN) identifed the ODBC data sources administrator. Default is "STATIONS".
 #' @param mlocs Vector of unique monitoring location station IDs (MLocIDs).
@@ -23,12 +25,12 @@
 #' library(AWQMSdata)
 #'
 #' # Retreive AWQMS data
-#' df.awqms <- AWQMS_Data(startdate = "1995-01-01",
-#'                       enddate = "2019-12-31",
-#'                       char = "Temperature, water",
-#'                       HUC10 = "1801020604",
-#'                       crit_codes = TRUE,
-#'                       filterQC = TRUE)
+#' df.awqms <- AWQMSdata::AWQMS_Data(startdate = "1995-01-01",
+#'                                   enddate = "2019-12-31",
+#'                                   char = "Temperature, water",
+#'                                   HUC10 = "1801020604",
+#'                                   crit_codes = TRUE,
+#'                                   filterQC = TRUE)
 #'
 #'df.stations <- query_stations(mlocs=unique(df.awqms$MLocID),
 #'                              stations_odbc = "STATIONS")
