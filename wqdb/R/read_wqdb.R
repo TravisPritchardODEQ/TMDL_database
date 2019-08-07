@@ -18,12 +18,15 @@
 #' @param hUC10 Optional vector of HUC10s to be fetched
 #' @param hUC12 Optional vector of HUC12s to be fetched
 #' @param hUC12_name Optional vector of HUC12 names to be fetched
-#' @param crit_codes If true, include standard codes used in determining criteria
 #' @return Dataframe from a wqdb formatted database
-#' @example
-#' read_wqdb(db="test.db", startdate = "2017-01-01", enddate = "2000-12-31", station = c("10591-ORDEQ", "29542-ORDEQ"))
-#' @export
+#' @examples
+#' # get sample data
+#' applegate.awqms <- data(applegate_temps)
+#' applegate.stations <- data(applegate_stations)
 #'
+#' write_wqdb(db="applegate.db", awqms=applegate.awqms, stations=applegate.stations)
+#' read_wqdb(db="applegate.db", startdate = "2000-01-01", enddate = "2018-12-31", station = c("28359-ORDEQ", "10428-ORDEQ"))
+#' @export
 #'
 
 read_wqdb <- function(db, table="vw_discrete", startdate="1949-09-15", enddate = NULL, station = NULL,
