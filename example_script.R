@@ -7,6 +7,7 @@ devtools::install_github("TravisPritchardODEQ/AWQMSdata", host = "https://api.gi
 library(wqdb)
 library(AWQMSdata)
 library(dplyr)
+library(lubridate)
 
 # This code only works for employees of ODEQ.
 # Requires read access permissions for internal odbc connections to the AWQMS and Stations databases.
@@ -15,6 +16,19 @@ library(dplyr)
 stations_odbc <- "STATIONS"
 
 setwd("E:/GitHub/wqdb/example")
+
+file <- "ContinuousSubmission_example.xlsx"
+huc_shp_dir <- "E:/GitHub/wqdb"
+huc_shp_name <- "WBD_OR"
+
+orgID <- "BLM(NOSTORETID)"
+orgname <-"Bureau of Land Management - Umbrella"
+
+df.stations.xlsx <- import_stations(file=file, huc_shp_dir=huc_shp_dir, huc_shp_name=huc_shp_name)
+
+df.data.summ.xlsx <- import_contin_summary(file=file, orgID=orgID, orgname=orgname)
+
+df.data.xlsx <- import_contin(file=file, orgID=orgID, orgname=orgname)
 
 df.stations <- query_stations(stations_odbc=stations_odbc, huc8="17100309")
 
