@@ -1,6 +1,6 @@
 Package: wqdb
 Title: Import Water Quality Data into a SQLite Database
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person(given = "Ryan",
            family = "Michie",
