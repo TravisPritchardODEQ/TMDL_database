@@ -31,8 +31,8 @@ import_contin_summary <- function(file, orgID, orgname) {
   # Import Locations Info -------------------------------------------------------------------
 
   locations_col_types <- c('text', 'text', 'text', 'numeric', 'numeric', 'text', 'text', 'text', 'text', 'text',
-                           'text', 'text', 'text', 'numeric', 'date', 'text', 'text', 'text', 'text', 'text',
-                           'text', 'text', 'text', 'text', 'numeric', 'numeric', 'numeric', 'numeric')
+                           'text', 'text', 'text', 'text', 'date', 'text', 'text', 'text', 'text', 'text',
+                           'text', 'text', 'text', 'text', 'text', 'numeric', 'text', 'numeric')
 
   locations_import <- readxl::read_excel(file, sheet = "Monitoring_Locations", col_types = locations_col_types)
 
